@@ -1,4 +1,6 @@
 TEMPLATE = lib
+
+load(qt_build_config)
 CONFIG += simd warning_clean exceptions c++14
 
 QT =
@@ -6,8 +8,6 @@ CONFIG -= qt
 
 TARGET = qtcryptopp
 VERSION = 8.2.0
-
-load(qt_build_config)
 
 isEmpty(CRYPTOPP_SRC_DIR): CRYPTOPP_SRC_DIR = src
 
