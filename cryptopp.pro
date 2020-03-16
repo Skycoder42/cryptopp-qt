@@ -389,16 +389,19 @@ ARMABI_SOURCES +=  \
 	$$CRYPTOPP_SRC_DIR/shacal2_simd.cpp
 
 ssse3 {
+	message("using ssse3")
 	QMAKE_CFLAGS_AESNI += $$QMAKE_CFLAGS_SSSE3
 	AESNI_SOURCES += $$CRYPTOPP_SRC_DIR/sm4_simd.cpp
 }
 
 sse4_1 {
+	message("using sse4.1")
 	QMAKE_CFLAGS_AESNI += $$QMAKE_CFLAGS_SSE4_1
 	AESNI_SOURCES += $$CRYPTOPP_SRC_DIR/rijndael_simd.cpp
 }
 
 sse4_2 {
+	message("using sse4.2")
 	QMAKE_CFLAGS_SHANI += $$QMAKE_CFLAGS_SSE4_2
 	SHANI_SOURCES += \
 		$$CRYPTOPP_SRC_DIR/sha_simd.cpp \
@@ -476,3 +479,5 @@ win32:!win32-g++ {
 }
 
 DEFINES += $$QT_CRYPTOPP_DEFINES
+
+message(Build config: $$CONFIG)
