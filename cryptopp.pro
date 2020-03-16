@@ -1,13 +1,13 @@
 TEMPLATE = lib
-CONFIG += static simd
+CONFIG += simd warning_clean exceptions c++14
+
+QT =
 CONFIG -= qt
 
 TARGET = qtcryptopp
 VERSION = 8.2.0
 
 load(qt_build_config)
-CONFIG += warning_clean exceptions c++14
-DEFINES += QT_DEPRECATED_WARNINGS QT_ASCII_CAST_WARNINGS
 
 isEmpty(CRYPTOPP_SRC_DIR): CRYPTOPP_SRC_DIR = src
 
@@ -467,6 +467,11 @@ win32:!win32-g++ {
 	darwin {
 		warning("Disabeling mixed assembler")
 		QT_CRYPTOPP_DEFINES += CRYPTOPP_DISABLE_MIXED_ASM
+	}
+
+	ios {
+		warning("Disabeling assembler")
+		QT_CRYPTOPP_DEFINES += CRYPTOPP_DISABLE_ASM
 	}
 }
 
