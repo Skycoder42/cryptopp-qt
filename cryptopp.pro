@@ -484,6 +484,7 @@ DEFINES += $$QT_CRYPTOPP_DEFINES
 
 CONFIG += masm
 
-masm {
-	!load(masm):!include($$PWD/mkspecs/features/masm.prf):error(Failed to resolve masm.prf)
-}
+masm: \
+	!load(masm): \
+	!include($$PWD/mkspecs/features/masm.prf): \
+	error(Failed to resolve masm.prf)
