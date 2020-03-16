@@ -387,6 +387,8 @@ ARMABI_SOURCES +=  \
 	$$CRYPTOPP_SRC_DIR/rijndael_simd.cpp \
 	$$CRYPTOPP_SRC_DIR/sha_simd.cpp \
 	$$CRYPTOPP_SRC_DIR/shacal2_simd.cpp
+	
+sse2: message("using sse2")
 
 ssse3 {
 	message("using ssse3")
