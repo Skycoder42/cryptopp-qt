@@ -1,0 +1,84 @@
+name: CI build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - 5.14.1
+        platform:
+          - gcc_64
+          - android
+          - wasm_32
+          - msvc2017_64
+          - msvc2017
+          - winrt_x64_msvc2017
+          - winrt_x86_msvc2017
+          #- winrt_armv7_msvc2017  # Fails with MSVC2017 in VS2019
+          - mingw73_64
+          - mingw73_32
+          - clang_64
+          - ios
+
+        include:
+          - platform: gcc_64
+            os: ubuntu-latest
+          - platform: android
+            os: ubuntu-latest
+          - platform: wasm_32
+            os: ubuntu-latest
+            emsdk: sdk-fastcomp-1.38.27-64bit
+          - platform: msvc2017_64
+            os: windows-latest
+          - platform: msvc2017
+            os: windows-latest
+          - platform: winrt_x64_msvc2017
+            os: windows-latest
+          - platform: winrt_x86_msvc2017
+            os: windows-latest
+          - platform: winrt_armv7_msvc2017
+            os: windows-latest
+          - platform: mingw73_64
+            os: windows-latest
+          - platform: mingw73_32
+            os: windows-latest
+          - platform: clang_64
+            os: macos-latest
+          - platform: ios
+            os: macos-latest
+
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          submodules: recursive
+      - uses: actions/setup-python@v1
+      - name: actions/cache emsdk
+        uses: actions/cache@v1
+        if: matrix.platform == 'wasm_32'
+        with:
+          path: emsdk-cache
+          key: ${{runner.os}}-emsdk-${{matrix.emsdk}}
+      - uses: mymindstorm/setup-emsdk@v3
+        if: matrix.platform == 'wasm_32'
+        with:
+          version: ${{matrix.emsdk}}
+          actions-cache-folder: emsdk-cache
+      - name: actions/cache qt
+        uses: actions/cache@v1
+        id: cache-qt
+        with:
+          path: qt/${{matrix.version}}/${{matrix.platform}}
+          key: qt-${{matrix.version}}-${{matrix.platform}}
+      - uses: Skycoder42/action-setup-qt@master
+        id: qt
+        with:
+          version: ${{matrix.version}}
+          platform: ${{matrix.platform}}
+          cachedir: qt/${{matrix.version}}/${{matrix.platform}}
+      - run: qmake
+      - name: make
+        run: ${{steps.qt.outputs.make}}
