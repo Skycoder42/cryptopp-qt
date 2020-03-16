@@ -11,8 +11,6 @@ VERSION = 8.2.0
 
 isEmpty(CRYPTOPP_SRC_DIR): CRYPTOPP_SRC_DIR = src
 
-QMAKEFEATURES = $$PWD/mkspecs/features
-
 # Input
 HEADERS += \
 	$$CRYPTOPP_SRC_DIR/3way.h \
@@ -484,4 +482,8 @@ win32:!win32-g++ {
 
 DEFINES += $$QT_CRYPTOPP_DEFINES
 
-message(Build config: $$CONFIG)
+CONFIG += masm
+
+masm {
+	!load(masm):!include($$PWD/mkspecs/features/masm.prf):error(Failed to resolve masm.prf)
+}
