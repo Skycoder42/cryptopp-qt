@@ -85,6 +85,10 @@ jobs:
           version: ${{matrix.version}}
           platform: ${{matrix.platform}}
           cachedir: qt/${{matrix.version}}/${{matrix.platform}}
+      - name: prepare build
+        if: matrix.pro-file == 'cryptopp-helper.pro'
+        shell: bash
+        run: mv test/.qmake.conf ./
       - run: mkdir build
       - name: qmake
         run: qmake ${{matrix.config}} ../${{matrix.pro-file}}
