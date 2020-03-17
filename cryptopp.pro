@@ -452,7 +452,7 @@ win32:!win32-g++ {
 		QMAKE_CXXFLAGS -= -mfpu=vfp
 		QMAKE_CXXFLAGS += -mfpu=neon
 		CONFIG += neon
-	} else:equals(ANDROID_TARGET_ARCH, x86) {
+	} else:equals(ANDROID_TARGET_ARCH, x86)|equals(ANDROID_TARGET_ARCH, x86_64) {
 		# Do this for Android builds for now as the NDK is broken
 		warning("Disabled x86 crypto ASM")
 
