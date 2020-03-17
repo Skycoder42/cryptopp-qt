@@ -25,6 +25,9 @@ jobs:
         config:
           - ""
           - "CONFIG+=static"
+        pro-file:
+          - cryptopp.pro
+          - cryptopp-helper.pro
 
         include:
           - platform: gcc_64
@@ -83,6 +86,8 @@ jobs:
           platform: ${{matrix.platform}}
           cachedir: qt/${{matrix.version}}/${{matrix.platform}}
       - name: qmake
-        run: qmake ${{matrix.config}}
+        run: qmake ${{matrix.config}} ../$${{matrix.pro-file}}
+        working-directory: build
       - name: make
         run: ${{steps.qt.outputs.make}}
+        working-directory: build
