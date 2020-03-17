@@ -85,7 +85,7 @@ jobs:
           version: ${{matrix.version}}
           platform: ${{matrix.platform}}
           cachedir: qt/${{matrix.version}}/${{matrix.platform}}
-      - mkdir: build
+      - run: mkdir build
       - name: qmake
         run: qmake ${{matrix.config}} ../${{matrix.pro-file}}
         working-directory: build
