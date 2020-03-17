@@ -410,6 +410,8 @@ sse4_2 {
 		$$CRYPTOPP_SRC_DIR/shacal2_simd.cpp
 }
 
+avx2: message("using avx2")
+
 win32:!win32-g++ {
 	CONFIG += masm
 
@@ -482,9 +484,10 @@ win32:!win32-g++ {
 
 DEFINES += $$QT_CRYPTOPP_DEFINES
 
-CONFIG += masm
-
 masm: \
 	!load(masm): \
 	!include($$PWD/mkspecs/features/masm.prf): \
 	error(Failed to resolve masm.prf)
+
+message(CONFIG: $$CONFIG)
+message(DEFINES: $$QT_CRYPTOPP_DEFINES)
