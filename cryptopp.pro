@@ -387,6 +387,9 @@ ARMABI_SOURCES +=  \
 	$$CRYPTOPP_SRC_DIR/rijndael_simd.cpp \
 	$$CRYPTOPP_SRC_DIR/sha_simd.cpp \
 	$$CRYPTOPP_SRC_DIR/shacal2_simd.cpp
+
+# fix missing simd
+win32:win32-g++: CONFIG += avx2
 	
 sse2: message("using sse2")
 
