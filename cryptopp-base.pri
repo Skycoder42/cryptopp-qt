@@ -328,13 +328,14 @@ SOURCES += \
 	$$CRYPTOPP_SRC_DIR/zinflate.cpp \
 	$$CRYPTOPP_SRC_DIR/zlib.cpp
 
+!simd: SOURCES += \
+	$$CRYPTOPP_SRC_DIR/sse_simd.cpp
+
 SSE2_SOURCES += \
 	$$CRYPTOPP_SRC_DIR/chacha_simd.cpp \
 	$$CRYPTOPP_SRC_DIR/donna_sse.cpp \
 	$$CRYPTOPP_SRC_DIR/sse_simd.cpp
 simd:sse: message("using sse2")
-else: SOURCES += \
-	$$CRYPTOPP_SRC_DIR/sse_simd.cpp
 
 SSSE3_SOURCES += \
 	$$CRYPTOPP_SRC_DIR/aria_simd.cpp \
