@@ -28,6 +28,7 @@ jobs:
         pro-file:
           - cryptopp.pro
           - cryptopp-helper.pro
+          - cryptopp-basic.pro
 
         include:
           - platform: gcc_64

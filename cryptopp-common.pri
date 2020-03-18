@@ -6,9 +6,9 @@ win32:win32-g++: CONFIG += avx2
 win32:!win32-g++ {
 	contains(QT_ARCH, x86_64)|contains(QT_ARCH, i386): CONFIG += masm
 	else {
-	warning("Disabeling assembler on non x86 windows")
-		CONFIG += cryptopp_disable_asm
-		CONFIG -= simd
+		warning("Disabeling assembler on non x86 windows")
+			CONFIG += cryptopp_disable_asm
+			CONFIG -= simd
 	}
 	cross_compile {
 		warning("Disabeling os dependence on winrt")
