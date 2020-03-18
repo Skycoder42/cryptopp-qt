@@ -409,7 +409,7 @@ ARMABI_SOURCES +=  \
 !simd {
 	SOURCES += \
 		$$CRYPTOPP_SRC_DIR/sse_simd.cpp
-		
+
 	ARMABI_SOURCES += \
 		$$CRYPTOPP_SRC_DIR/neon_simd.cpp
 }
@@ -446,7 +446,7 @@ unix|win32-g++ {
 	QMAKE_CFLAGS_SSSE3 += -mpclmul
 }
 
-linux:cryptopp_omp {
+linux:!android:cryptopp_omp {
 	QMAKE_CXXFLAGS += -fopenmp
 	LIBS += -lgomp
 }
