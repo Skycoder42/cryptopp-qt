@@ -328,9 +328,6 @@ SOURCES += \
 	$$CRYPTOPP_SRC_DIR/zinflate.cpp \
 	$$CRYPTOPP_SRC_DIR/zlib.cpp
 
-!simd: SOURCES += \
-	$$CRYPTOPP_SRC_DIR/sse_simd.cpp
-
 SSE2_SOURCES += \
 	$$CRYPTOPP_SRC_DIR/chacha_simd.cpp \
 	$$CRYPTOPP_SRC_DIR/donna_sse.cpp \
@@ -408,6 +405,14 @@ ARMABI_SOURCES +=  \
 	$$CRYPTOPP_SRC_DIR/rijndael_simd.cpp \
 	$$CRYPTOPP_SRC_DIR/sha_simd.cpp \
 	$$CRYPTOPP_SRC_DIR/shacal2_simd.cpp
+
+!simd {
+	SOURCES += \
+		$$CRYPTOPP_SRC_DIR/sse_simd.cpp
+		
+	ARMABI_SOURCES += \
+		$$CRYPTOPP_SRC_DIR/neon_simd.cpp
+}
 
 win32:!win32-g++ {
 	contains(QT_ARCH, x86_64) {
