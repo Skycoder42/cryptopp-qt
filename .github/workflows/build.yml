@@ -57,6 +57,18 @@ jobs:
           - platform: ios
             os: macos-latest
 
+          - config: "CONFIG+=cryptopp_omp"
+            testcfg: shared
+          - config: "CONFIG+=static"
+            testcfg: static
+
+          - pro-file: cryptopp.pro
+            testpro: default
+          - pro-file: cryptopp-helper.pro
+            testpro: helper
+          - pro-file: cryptopp-basic.pro
+            testpro: basic
+
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v1
@@ -97,3 +109,10 @@ jobs:
       - name: make
         run: ${{steps.qt.outputs.make}}
         working-directory: build
+      - run: mkdir build/test
+      - name: qmake test
+        run: qmake "TEST_PRI_PATH=${{matrix.testcfg}}-${{matrix.testpro}}.pri" ../../test/test.pro
+        working-directory: build/test
+      - name: make test
+        run: ${{steps.qt.outputs.make}}
+        working-directory: build/test
