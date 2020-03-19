@@ -5,6 +5,8 @@ TARGET = crypttest
 QT =
 CONFIG -= qt
 
+!exists(../src/adhoc.cpp):system($$QMAKE_COPY_FILE ../src/adhoc.cpp.proto ../src/adhoc.cpp)
+
 HEADERS += \
   ../src/bench.h \
   ../src/factory.h \
