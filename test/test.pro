@@ -10,7 +10,8 @@ CONFIG -= qt
 HEADERS += \
   ../src/bench.h \
   ../src/factory.h \
-  ../src/validate.h
+  ../src/validate.h \
+  ../src/fips140.h
 
 SOURCES += \
   ../src/adhoc.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
   ../src/regtest1.cpp \
   ../src/regtest2.cpp \
   ../src/regtest3.cpp \
-  ../src/regtest4.cpp
+  ../src/regtest4.cpp \
+  ../src/fipstest.cpp
 
 include($$TEST_PRI_PATH)  # passed as parameter
