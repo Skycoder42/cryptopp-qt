@@ -1,5 +1,7 @@
 TEMPLATE = lib
 
+win32: CONFIG += skip_target_version_ext
+
 TARGET = qtcryptopp
 VERSION = 8.2.0
 

@@ -99,17 +99,23 @@ jobs:
         run: mv test/.qmake.conf ./
       - run: mkdir build
       - name: qmake
+        working-directory: build
         run: qmake ${{matrix.config}} ../${{matrix.pro-file}}
-        working-directory: build
       - name: make
-        run: ${{steps.qt.outputs.make}}
         working-directory: build
+        run: ${{steps.qt.outputs.make}}
       - run: mkdir build/test
       - name: qmake test
         if: steps.qt.outputs.tests == 'true' && matrix.testpro != 'helper'
-        run: qmake "TEST_PRI_PATH=${{matrix.testpro}}.pri" ../../test/test.pro
         working-directory: build/test
+        run: qmake "TEST_PRI_PATH=${{matrix.testpro}}.pri" ../../test/test.pro
       - name: make test
         if: steps.qt.outputs.tests == 'true' && matrix.testpro != 'helper'
-        run: ${{steps.qt.outputs.make}}
         working-directory: build/test
+        run: ${{steps.qt.outputs.make}}
+      - name: run test v
+        working-directory: build/test
+        run: ./cryptest.exe v
+      - name: run test tv all
+        working-directory: build/test
+        run: ./cryptest.exe tv all
