@@ -37,6 +37,4 @@ SOURCES += \
   ../src/regtest3.cpp \
   ../src/regtest4.cpp
 
-INCLUDEPATH += ../src
-
 include($$TEST_PRI_PATH)  # passed as parameter
