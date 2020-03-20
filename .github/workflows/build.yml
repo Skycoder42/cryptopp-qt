@@ -113,9 +113,7 @@ jobs:
         if: steps.qt.outputs.tests == 'true' && matrix.testpro != 'helper'
         working-directory: build/test
         run: ${{steps.qt.outputs.make}}
-      - name: run test v
+      - name: run test
+        if: steps.qt.outputs.tests == 'true' && matrix.testpro != 'helper'
         working-directory: build/test
-        run: ./cryptest.exe v
-      - name: run test tv all
-        working-directory: build/test
-        run: ./cryptest.exe tv all
+        run: ${{steps.qt.outputs.make}} run-tests
