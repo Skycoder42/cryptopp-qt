@@ -5,7 +5,9 @@ TARGET = crypttest
 QT =
 CONFIG -= qt
 
-!exists(../src/adhoc.cpp):system($$QMAKE_COPY_FILE ../src/adhoc.cpp.proto ../src/adhoc.cpp)
+!exists(../src/adhoc.cpp): \
+	system($$QMAKE_COPY_FILE $$system_path(../src/adhoc.cpp.proto ) $$system_path(../src/adhoc.cpp)): \
+	error("Failed to create adhoc.cpp")
 
 HEADERS += \
   ../src/bench.h \
