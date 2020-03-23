@@ -3,7 +3,8 @@ TEMPLATE = app
 TARGET = crypttest
 
 QT =
-CONFIG -= qt
+CONFIG += console
+CONFIG -= qt app_bundle
 
 !exists(../src/adhoc.cpp): \
 	!system($$QMAKE_COPY_FILE $$system_path(../src/adhoc.cpp.proto ) $$system_path(../src/adhoc.cpp)): \
