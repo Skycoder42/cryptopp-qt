@@ -36,8 +36,11 @@ ios {
 clang: QMAKE_CXXFLAGS += -Wno-keyword-macro -Wno-unused-const-variable -Wno-unused-private-field
 else:gcc: QMAKE_CXXFLAGS += -Wno-class-memaccess -Wno-unknown-pragmas
 
-equals(TEMPLATE, lib):!static: DEFINES += CRYPTOPP_EXPORTS
+win32:equals(TEMPLATE, lib):!static {
+	DEFINES -= UNICODE _UNICODE
+	DEFINES += _MBCS CRYPTOPP_EXPORTS
+}
 
 include($$PWD/cryptopp-base.pri)
 
-equals(TEMPLATE, lib):!static: QT_CRYPTOPP_DEFINES += CRYPTOPP_IMPORTS
+win32:equals(TEMPLATE, lib):!static: QT_CRYPTOPP_DEFINES += CRYPTOPP_IMPORTS
