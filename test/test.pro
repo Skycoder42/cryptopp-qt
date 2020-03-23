@@ -61,8 +61,8 @@ debug_and_release:!ReleaseBuild:!DebugBuild {
 		runtarget.commands += set PATH=$$shell_path($$OUT_PWD/../$$outdir_helper);$$shell_path($$[QT_INSTALL_BINS]);$(PATH)
 		runtarget.commands += $$escape_expand(\\n\\t)if exist $${outdir_helper}\\fail del $${outdir_helper}\\fail
 		runtarget.commands += $$escape_expand(\\n\\t)cd $$shell_path($$PWD/../src)
-		runtarget.commands += $$escape_expand(\\n\\t)start /w call $$OUT_PWD\$(DESTDIR_TARGET) v ^>^> $${outdir_helper}\\test.log ^|^| echo FAIL ^> $${outdir_helper}\\fail ^& exit 0
-		runtarget.commands += $$escape_expand(\\n\\t)start /w call $$OUT_PWD\$(DESTDIR_TARGET) tv all ^>^> $${outdir_helper}\\test.log ^|^| echo FAIL ^> $${outdir_helper}\\fail ^& exit 0
+		runtarget.commands += $$escape_expand(\\n\\t)start /w call $$shell_path($$OUT_PWD/)$(DESTDIR_TARGET) v ^>^> $${outdir_helper}\\test.log ^|^| echo FAIL ^> $${outdir_helper}\\fail ^& exit 0
+		runtarget.commands += $$escape_expand(\\n\\t)start /w call $$shell_path($$OUT_PWD/)$(DESTDIR_TARGET) tv all ^>^> $${outdir_helper}\\test.log ^|^| echo FAIL ^> $${outdir_helper}\\fail ^& exit 0
 		runtarget.commands += $$escape_expand(\\n\\t)type $${outdir_helper}\\test.log
 		runtarget.commands += $$escape_expand(\\n\\t)if exist $${outdir_helper}\\fail exit 42
 		QMAKE_EXTRA_TARGETS += runtarget
