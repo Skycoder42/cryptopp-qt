@@ -23,7 +23,7 @@ jobs:
           - clang_64
           - ios
         config:
-          - "CONFIG+=cryptopp_omp"  # linux only, ignored on other platforms
+          - "CONFIG+=dynamic"  # linux only, ignored on other platforms
           - "CONFIG+=static"
         pro-file:
           - cryptopp.pro
