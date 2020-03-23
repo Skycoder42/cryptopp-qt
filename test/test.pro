@@ -47,6 +47,8 @@ include($$TEST_PRI_PATH)  # passed as parameter
 debug_and_release:!ReleaseBuild:!DebugBuild {
 	runtarget.target = run-tests
 	runtarget.CONFIG = recursive
+	CONFIG(debug, debug|release): runtarget.recurse = Debug
+	CONFIG(release, debug|release): runtarget.recurse = Release
 	runtarget.recurse_target = run-tests
 	QMAKE_EXTRA_TARGETS += runtarget
 } else {
