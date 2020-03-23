@@ -93,6 +93,9 @@ jobs:
           version: ${{matrix.version}}
           platform: ${{matrix.platform}}
           cachedir: qt/${{matrix.version}}/${{matrix.platform}}
+      - run: find . || true
+        shell: bash
+        working-directory: build
       - name: prepare build
         if: matrix.pro-file == 'cryptopp-helper.pro'
         shell: bash
