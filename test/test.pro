@@ -6,7 +6,7 @@ QT =
 CONFIG -= qt
 
 !exists(../src/adhoc.cpp): \
-	system($$QMAKE_COPY_FILE $$system_path(../src/adhoc.cpp.proto ) $$system_path(../src/adhoc.cpp)): \
+	!system($$QMAKE_COPY_FILE $$system_path(../src/adhoc.cpp.proto ) $$system_path(../src/adhoc.cpp)): \
 	error("Failed to create adhoc.cpp")
 
 HEADERS += \
