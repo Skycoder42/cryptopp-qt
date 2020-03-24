@@ -1,4 +1,5 @@
 TEMPLATE = lib
+CONFIG += static
 
 win32: CONFIG += skip_target_version_ext
 
