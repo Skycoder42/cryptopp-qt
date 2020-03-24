@@ -35,6 +35,7 @@ ios {
 
 clang: QMAKE_CXXFLAGS += -Wno-keyword-macro -Wno-unused-const-variable -Wno-unused-private-field
 else:gcc: QMAKE_CXXFLAGS += -Wno-class-memaccess -Wno-unknown-pragmas
+else:win32:msvc: QMAKE_CXXFLAGS += -wd4231 -wd4251 -wd4275 -wd4355 -wd4505
 
 win32:equals(TEMPLATE, lib):!static {
 	DEFINES -= UNICODE _UNICODE

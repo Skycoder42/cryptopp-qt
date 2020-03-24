@@ -112,7 +112,7 @@ jobs:
       - name: qmake test
         if: steps.qt.outputs.tests == 'true' && matrix.testpro != 'helper'
         working-directory: build/test
-        run: qmake "TEST_PRI_PATH=${{matrix.testpro}}.pri" ../../test/test.pro
+        run: qmake "TEST_PRI_PATH=${{matrix.testpro}}.pri" ${{matrix.extra-config}} ../../test/test.pro
       - name: make test
         if: steps.qt.outputs.tests == 'true' && matrix.testpro != 'helper'
         working-directory: build/test
