@@ -3,7 +3,7 @@ TEMPLATE = app
 TARGET = crypttest
 
 QT =
-CONFIG += console
+CONFIG += console precompile_header
 CONFIG -= qt app_bundle
 
 !exists(../src/adhoc.cpp): \
