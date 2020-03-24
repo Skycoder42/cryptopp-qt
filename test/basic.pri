@@ -4,6 +4,6 @@ win32:!win32-g++:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../release 
 else:win32:!win32-g++:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../debug -lcryptopp
 else: LIBS += -L$$OUT_PWD/.. -lcryptopp
 
-DEFINES += CRYPTOPP_DISABLE_ASM NO_OS_DEPENDENCE
+linux:!android:cryptopp_omp: LIBS += -lgomp
 
-dynamic: DEFINES += CRYPTOPP_IMPORTS
+DEFINES += CRYPTOPP_DISABLE_ASM NO_OS_DEPENDENCE

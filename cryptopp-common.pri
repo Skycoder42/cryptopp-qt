@@ -4,6 +4,9 @@ CONFIG += simd warning_clean
 win32:win32-g++: CONFIG += avx2
 
 win32:!win32-g++ {
+	DEFINES -= UNICODE _UNICODE
+	DEFINES += _MBCS
+
 	contains(QT_ARCH, x86_64)|contains(QT_ARCH, i386): CONFIG += masm
 	else {
 		warning("Disabeling assembler on non x86 windows")
@@ -37,11 +40,4 @@ clang: QMAKE_CXXFLAGS += -Wno-keyword-macro -Wno-unused-const-variable -Wno-unus
 else:gcc: QMAKE_CXXFLAGS += -Wno-class-memaccess -Wno-unknown-pragmas
 else:win32:msvc: QMAKE_CXXFLAGS += -wd4231 -wd4251 -wd4275 -wd4355 -wd4505
 
-win32:equals(TEMPLATE, lib):!static {
-	DEFINES -= UNICODE _UNICODE
-	DEFINES += _MBCS CRYPTOPP_EXPORTS
-}
-
 include($$PWD/cryptopp-base.pri)
-
-win32:equals(TEMPLATE, lib):!static: QT_CRYPTOPP_DEFINES += CRYPTOPP_IMPORTS

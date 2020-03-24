@@ -22,9 +22,6 @@ jobs:
           - mingw73_32
           - clang_64
           - ios
-        config:
-          - "CONFIG+=dynamic"
-          - "CONFIG+=static"
         pro-file:
           - cryptopp.pro
           - cryptopp-helper.pro

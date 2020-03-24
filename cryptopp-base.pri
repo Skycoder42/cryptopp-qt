@@ -448,7 +448,7 @@ unix|win32-g++ {
 
 linux:!android:cryptopp_omp {
 	QMAKE_CXXFLAGS += -fopenmp
-	LIBS += -lgomp
+	QT_CRYPTOPP_LIBS += -lgomp
 }
 
 cryptopp_disable_asm {
@@ -464,13 +464,15 @@ cryptopp_no_os_dependence {
 	QT_CRYPTOPP_DEFINES += NO_OS_DEPENDENCE
 }
 
-DEFINES += $$QT_CRYPTOPP_DEFINES
-
 masm: \
 	!isEmpty(MASM_SOURCES): \
 	!load(masm): \
 	!include($$PWD/mkspecs/features/masm.prf): \
 	error(Failed to resolve masm.prf)
 
+DEFINES += $$QT_CRYPTOPP_DEFINES
+LIBS += $$QT_CRYPTOPP_LIBS
+
 message(CONFIG: $$CONFIG)
 message(DEFINES: $$QT_CRYPTOPP_DEFINES)
+message(LIBS: $$QT_CRYPTOPP_LIBS)

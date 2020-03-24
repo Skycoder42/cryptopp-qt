@@ -44,8 +44,6 @@ SOURCES += \
 
 include($$TEST_PRI_PATH)  # passed as parameter
 
-linux:!android:cryptopp_omp: LIBS += -lgomp
-
 debug_and_release:!ReleaseBuild:!DebugBuild {
 	runtarget.target = run-tests
 	runtarget.CONFIG = recursive
