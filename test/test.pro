@@ -10,6 +10,11 @@ CONFIG -= qt app_bundle
 	!system($$QMAKE_COPY_FILE $$system_path(../src/adhoc.cpp.proto ) $$system_path(../src/adhoc.cpp)): \
 	error("Failed to create adhoc.cpp")
 
+precompile_header {
+	PRECOMPILED_HEADER = $$CRYPTOPP_SRC_DIR/pch.h
+	DEFINES *= USE_PRECOMPILED_HEADERS
+}
+
 HEADERS += \
   ../src/bench.h \
   ../src/factory.h \
