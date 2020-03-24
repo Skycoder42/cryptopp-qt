@@ -11,7 +11,7 @@ CONFIG -= qt app_bundle
 	error("Failed to create adhoc.cpp")
 
 precompile_header {
-	PRECOMPILED_HEADER = $$CRYPTOPP_SRC_DIR/pch.h
+	PRECOMPILED_HEADER = ../src/pch.h
 	DEFINES *= USE_PRECOMPILED_HEADERS
 }
 
