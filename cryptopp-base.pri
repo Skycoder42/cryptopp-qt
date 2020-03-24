@@ -4,6 +4,11 @@ CONFIG -= qt
 
 isEmpty(CRYPTOPP_SRC_DIR): CRYPTOPP_SRC_DIR = $$PWD/src
 
+PRECOMPILED_HEADER = $$CRYPTOPP_SRC_DIR/pch.h
+precompile_header {
+	DEFINES *= USE_PRECOMPILED_HEADERS
+}
+
 HEADERS += \
 	$$CRYPTOPP_SRC_DIR/3way.h \
 	$$CRYPTOPP_SRC_DIR/adler32.h \
@@ -111,7 +116,6 @@ HEADERS += \
 	$$CRYPTOPP_SRC_DIR/ossig.h \
 	$$CRYPTOPP_SRC_DIR/padlkrng.h \
 	$$CRYPTOPP_SRC_DIR/panama.h \
-	$$CRYPTOPP_SRC_DIR/pch.h \
 	$$CRYPTOPP_SRC_DIR/pkcspad.h \
 	$$CRYPTOPP_SRC_DIR/poly1305.h \
 	$$CRYPTOPP_SRC_DIR/polynomi.h \
