@@ -4,12 +4,13 @@ CONFIG -= qt
 
 isEmpty(CRYPTOPP_SRC_DIR): CRYPTOPP_SRC_DIR = $$PWD/src
 
-precompile_header {
+cryptopp_pch:precompile_header {
 	PRECOMPILED_HEADER = $$CRYPTOPP_SRC_DIR/pch.h
 	DEFINES *= USE_PRECOMPILED_HEADERS
-} else: HEADERS += $$CRYPTOPP_SRC_DIR/pch.h
+}
 
 HEADERS += \
+	$$CRYPTOPP_SRC_DIR/pch.h \
 	$$CRYPTOPP_SRC_DIR/3way.h \
 	$$CRYPTOPP_SRC_DIR/adler32.h \
 	$$CRYPTOPP_SRC_DIR/adv_simd.h \
@@ -185,6 +186,9 @@ HEADERS += \
 	$$CRYPTOPP_SRC_DIR/zlib.h
 
 SOURCES += \
+	$$CRYPTOPP_SRC_DIR/cryptlib.cpp \
+	$$CRYPTOPP_SRC_DIR/cpu.cpp \
+	$$CRYPTOPP_SRC_DIR/integer.cpp \
 	$$CRYPTOPP_SRC_DIR/3way.cpp \
 	$$CRYPTOPP_SRC_DIR/adler32.cpp \
 	$$CRYPTOPP_SRC_DIR/algebra.cpp \
@@ -211,9 +215,7 @@ SOURCES += \
 	$$CRYPTOPP_SRC_DIR/cham.cpp \
 	$$CRYPTOPP_SRC_DIR/channels.cpp \
 	$$CRYPTOPP_SRC_DIR/cmac.cpp \
-	$$CRYPTOPP_SRC_DIR/cpu.cpp \
 	$$CRYPTOPP_SRC_DIR/crc.cpp \
-	$$CRYPTOPP_SRC_DIR/cryptlib.cpp \
 	$$CRYPTOPP_SRC_DIR/darn.cpp \
 	$$CRYPTOPP_SRC_DIR/default.cpp \
 	$$CRYPTOPP_SRC_DIR/des.cpp \
@@ -250,7 +252,6 @@ SOURCES += \
 	$$CRYPTOPP_SRC_DIR/hrtimer.cpp \
 	$$CRYPTOPP_SRC_DIR/ida.cpp \
 	$$CRYPTOPP_SRC_DIR/idea.cpp \
-	$$CRYPTOPP_SRC_DIR/integer.cpp \
 	$$CRYPTOPP_SRC_DIR/iterhash.cpp \
 	$$CRYPTOPP_SRC_DIR/kalyna.cpp \
 	$$CRYPTOPP_SRC_DIR/kalynatab.cpp \

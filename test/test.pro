@@ -3,17 +3,12 @@ TEMPLATE = app
 TARGET = crypttest
 
 QT =
-CONFIG += console precompile_header
+CONFIG += console
 CONFIG -= qt app_bundle
 
 !exists(../src/adhoc.cpp): \
 	!system($$QMAKE_COPY_FILE $$system_path(../src/adhoc.cpp.proto ) $$system_path(../src/adhoc.cpp)): \
 	error("Failed to create adhoc.cpp")
-
-precompile_header {
-	PRECOMPILED_HEADER = ../src/pch.h
-	DEFINES *= USE_PRECOMPILED_HEADERS
-}
 
 HEADERS += \
   ../src/bench.h \
