@@ -1,5 +1,5 @@
 TEMPLATE = lib
-CONFIG += static
+CONFIG += static installed qt_install_headers
 
 win32: CONFIG += skip_target_version_ext
 
@@ -13,8 +13,8 @@ MODULE_INCLUDEPATH += $$CRYPTOPP_SRC_DIR
 
 load(qt_helper_lib)
 
-!no_helper_install {
-  headers.path = $$[QT_INSTALL_HEADERS]/cryptopp
-  headers.files = $$HEADERS
-  INSTALLS += headers
-}
+#!no_helper_install {
+#  headers.path = $$[QT_INSTALL_HEADERS]/cryptopp
+#  headers.files = $$HEADERS
+#  INSTALLS += headers
+#}
